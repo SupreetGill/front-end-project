@@ -1,0 +1,65 @@
+@use '../../partials/fonts.scss' as * ;
+
+.student{
+
+}
+
+.student__box{
+display: flex;
+border:1px solid green;
+}
+
+
+.student__img-box{
+    border:1px solid lightgray;
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+   width:30%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin:1rem;
+}
+
+.student__img{
+width:70%;
+height:auto;
+}
+
+.student__info-box{
+    border:1px solid pink;
+    flex:1;
+}
+
+.student__name{
+   font-size: 2.6rem;
+   line-height: 3rem;
+   font-weight: 700;
+   text-transform: uppercase;
+}
+
+.student__detail{
+
+}
+
+.student__grade-box{
+
+}
+
+.student__grade{
+
+}
+
+.student__btn-box{
+
+}
+
+.student__btn{
+
+}
+.student__ul{
+    margin:1rem;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    color: grey;
+}
