@@ -19,6 +19,16 @@ class Form extends Component {
     searchFunc(this.state.search.toLowerCase())
   }
 
+  // handleKey = (e) =>{
+  //   console.log(e.target.value);
+
+  //   const {searchFunc} = this.props;
+  //   this.setState ({
+  //     search : e.target.value,
+  //   })
+  //   searchFunc(this.state.search.toLowerCase())
+  // }
+
 
   // searchStudents = ()=>{
   //     const {students}= this.props;
@@ -43,7 +53,7 @@ class Form extends Component {
               name = 'search'
               onChange =  {this.handleChange}
               />
-              <button className = 'form-btn' >Submit</button>
+              {/* <button className = 'form-btn' >Submit</button> */}
           </form>
         )
     }

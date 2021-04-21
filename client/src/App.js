@@ -5,13 +5,16 @@ import axios from 'axios';
 import StudentInfo from './Components/StudentInfo/StudentInfo';
 import { v4 as uuidv4 } from 'uuid';
 import Form from './Components/Form/Form';
+import TagForm from './Components/TagForm/TagForm';
 
 
 
 class App extends Component {
 
   state = {
-    studentsArr: ''
+    studentsArr: '',
+    filterArr: '',
+    tagArr :[]
   }
   
   
@@ -19,7 +22,8 @@ class App extends Component {
     axios.get('https://api.hatchways.io/assessment/students')
     .then(res =>{
       this.setState({
-        studentsArr : res.data.students
+        studentsArr : res.data.students,
+        filterArr: res.data.students,
       })
     })
   }
@@ -27,6 +31,7 @@ class App extends Component {
 
 
   searchStudents = (userInput)=>{
+    // console.log(userInput);
     const {studentsArr} = this.state;
     const dynamicResults =  studentsArr.filter(student=>{
         const searchField = userInput.toLowerCase();
@@ -35,24 +40,58 @@ class App extends Component {
         return first.includes(searchField) || last.includes(searchField)
     })
     this.setState({
-      studentsArr :dynamicResults
+      filterArr : dynamicResults
     })
 }
 
 
+
+searchByTag = (userInput,t)=>{
+  // console.log(userInput);
+  // const {studentsArr} = this.state;
+  // const dynamicResults =  studentsArr.filter(student=>{
+  //     const searchField = userInput.toLowerCase();
+  //     // const tag = ;
+      
+  //     return first.includes(searchField) || last.includes(searchField)
+  // })
+  // this.setState({
+  //   filterArr : dynamicResults
+  // })
+}
+
+
+
+
+handleKeyPress = (e,tag) => {
+  // e.preventDefault();
+  if(e.key === 'Enter'){
+      const {tagArr} = this.state;
+      // let arr = [];
+      // arr.push(tag)
+      this.setState({
+          tagArr: [...tagArr,tag],
+          tag : '',
+      })
+        
+  }
+}
+
   render() {
 
-    const {studentsArr} = this.state;
+    const {filterArr} = this.state;
 
-    if(!studentsArr){
+    if(!filterArr){
      return <p>Loading....</p>
     }
     return (
       <>
-          <Form students ={studentsArr} searchFunc = {this.searchStudents}/>
+          
           <div className = 'app'>
-            {studentsArr.map(student=>{
-          return   <StudentInfo key = {uuidv4()} student = {student} />
+          <Form students ={filterArr} searchFunc = {this.searchStudents}/>
+          <TagForm students ={filterArr} searchFunc = {this.searchByTag}/>
+            {filterArr.map(student=>{
+          return   <StudentInfo key = {uuidv4()} student = {student} tagArr= {this.state.tagArr} handleKeyPress={this.handleKeyPress}/>
             })}
           </div>
       </>

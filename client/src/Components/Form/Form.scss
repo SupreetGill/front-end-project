@@ -6,6 +6,15 @@
 
 
 .form-input{
+border:none;
+padding:1rem 0;
+border-bottom: 1px solid lightgrey;
+width:96%;
+margin:auto;
+display:flex;
+&:focus{
+    outline:none;
+}
 
 }
 
