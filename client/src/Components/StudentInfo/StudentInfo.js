@@ -6,7 +6,16 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 class StudentInfo extends Component {
+    state = {
+        toggleGrades : false
+    }
     
+    toggleGrades=()=>{
+        this.setState({
+            toggleGrades : !this.state.toggleGrades
+        })
+    }
+
     render() {
         const {student} = this.props;
    
@@ -25,14 +34,15 @@ class StudentInfo extends Component {
                                 <li className = 'student__detail' >Average: 99%</li>
                             </ul>
                             
-                            <div className ='student__grade-box' >
-                            {student.grades.map(grade =>{
-                                return <p key = {uuidv4()} className = 'student__grade student__detail'>{grade}</p>
+                            <ul className = {this.state.toggleGrades ?'student__grade-box': 'student__noShow' }  >
+                            {student.grades.map((grade,index) =>{
+                                
+                                return <li key = {uuidv4()} className = 'student__grade student__detail'>{`Test ${index+1}       ${grade}`}%</li>
                             })}
-                            </div>
+                            </ul>
                         </div>
                         <div className = 'student__btn-box' >
-                          <button className = 'student__btn' >+</button>  
+                          <button onClick = {this.toggleGrades}  className = 'student__btn' >+</button>  
                         </div>
                         
                     </div>

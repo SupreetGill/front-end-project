@@ -43,7 +43,16 @@ height:auto;
 }
 
 .student__grade-box{
+    display: block;
+    margin:1rem;
+    font-size:1.6rem ;
+    line-height: 2rem;
+    color:grey;
 
+}
+
+.student__noShow{
+    display: none;
 }
 
 .student__grade{
@@ -55,8 +64,11 @@ height:auto;
 }
 
 .student__btn{
-
+ font-size: 4rem;
+ background-color:transparent;
+ color:grey;
 }
+
 .student__ul{
     margin:1rem;
     font-size: 1.6rem;
