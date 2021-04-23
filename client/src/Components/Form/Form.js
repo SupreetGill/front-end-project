@@ -5,59 +5,37 @@ class Form extends Component {
 
   state = {
       search : '',
-      
+      tag :''
   }
 
   handleChange = (e)=>{
     const {searchFunc} = this.props;
     e.preventDefault();
-    this.setState ({
-      search : e.target.value,
-    })
-    
-
-    searchFunc(this.state.search.toLowerCase())
+    this.setState({ [e.target.name] : e.target.value }, () =>
+      searchFunc(this.state.search.toLowerCase(),this.state.tag.toLowerCase())
+    );
   }
 
-  // handleKey = (e) =>{
-  //   console.log(e.target.value);
-
-  //   const {searchFunc} = this.props;
-  //   this.setState ({
-  //     search : e.target.value,
-  //   })
-  //   searchFunc(this.state.search.toLowerCase())
-  // }
-
-
-  // searchStudents = ()=>{
-  //     const {students}= this.props;
-  //     const {search} = this.state;
-  //     students.filter(student=>{
-  //       const lookUp = search.toLowerCase();
-  //       const first = student.firstName.toLowerCase();
-  //       const last = student.lastName.toLowerCase();
-  //       return first.includes(lookUp) || last.includes(lookUp)
-  //     })
-  // }
-
     render() {
-      const {students}= this.props;
-      // console.log(students)
         return (
           <form className = 'form' action="">
               <input className = 'form-input'
-              type="text" 
-              placeholder = 'Search by name' 
-              value = {this.state.search} 
-              name = 'search'
-              onChange =  {this.handleChange}
+                type="text" 
+                placeholder = 'Search by name' 
+                value = {this.state.search} 
+                name = 'search'
+                onChange =  {this.handleChange}
               />
-              {/* <button className = 'form-btn' >Submit</button> */}
+              <input className = 'form-input'
+                type="text" 
+                placeholder = 'Search by Tag' 
+                value = {this.state.tag} 
+                name = 'tag'
+                onChange =  {this.handleChange}
+              />
           </form>
         )
     }
 }
-
 
 export default Form;

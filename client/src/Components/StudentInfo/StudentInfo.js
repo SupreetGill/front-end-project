@@ -1,70 +1,38 @@
 import React, { Component } from 'react';
 import './StudentInfo.scss';
-import AddIcon from '@material-ui/icons/Add';
 import { v4 as uuidv4 } from 'uuid';
-
-
 
 class StudentInfo extends Component {
     
     state = {
         toggleGrades : false,
-        tag : '',
-        // tagArr : []
+        tag : ''
     }
     
-
-
     toggleGrades=()=>{
         this.setState({
             toggleGrades : !this.state.toggleGrades
         })
     }
 
-    // onSubmit = (e)=>{
-    //     const arr = [];
-    //     // e.preventDefault();
-    //     const tagValue = this.state.tag;
-    //    const updatedTagArr =  arr.push(tagValue)
-    //    this.setState({
-    //        tagArr :updatedTagArr
-    //    })
-
-    // }
-
-    // handleKeyPress = (e) => {
-    //     // e.preventDefault();
-    //     if(e.key === 'Enter'){
-    //         const {tag,tagArr} = this.state;
-    //         // let arr = [];
-    //         // arr.push(tag)
-    //         this.setState({
-    //             tagArr: [...tagArr,tag],
-    //             tag : '',
-    //         })
-            
-
-    //     }
-    // }
-
-
     handleChange = (e)=>{
         e.preventDefault();
         this.setState ({
           tag : e.target.value,
         })
-        // this.onSubmit();
     }  
     
 handleKey=(e)=>{
     const {tag}= this.state;
-    this.props.handleKeyPress(e,tag)
+    const {student} = this.props;
+    const id = student.id;
+
+    this.props.handleKeyPress(e,tag,id);
 }
 
     render() {
         const {student} = this.props;
-        const { tagArr} = this.state;
-   
+       
         return (
                 <section  className = 'student' >
                     <div className = 'student__box' >
@@ -87,11 +55,12 @@ handleKey=(e)=>{
                             })}
                             </ul>
 
-                            <ul className = 'student__ul-box' >{this.props.tagArr.map(t=>{
+                            <ul className = 'student__ul-box' >{student.tag.map(t=>{
                                 return <li className = 'student__li' key = {uuidv4()}>{t}</li>
                             })}</ul>
-                            {/* <form> */}
+                           
                                 <input className  = "student__add"
+                                id = {uuidv4()}
                                 type="text" 
                                 placeholder = 'add a tag'
                                 name = 'tag'
@@ -100,7 +69,6 @@ handleKey=(e)=>{
                                 onKeyPress = {this.handleKey}
                                 />
                                 
-                            {/* </form> */}
                         </div>
                         <div className = 'student__btn-box' >
                           <button onClick = {this.toggleGrades}  className = 'student__btn' >+</button>  

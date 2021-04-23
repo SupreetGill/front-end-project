@@ -1,12 +1,7 @@
 @use '../../partials/fonts.scss' as * ;
 
-.student{
-
-}
-
 .student__box{
-display: flex;
-// border:1px solid green;
+    display: flex;
 }
 
 
@@ -29,7 +24,6 @@ height:auto;
 }
 
 .student__info-box{
-    // border:1px solid pink;
     flex:1;
 }
 
@@ -40,29 +34,16 @@ height:auto;
    text-transform: uppercase;
 }
 
-.student__detail{
-
-}
-
 .student__grade-box{
     display: block;
     margin:1rem;
     font-size:1.6rem ;
     line-height: 2rem;
     color:grey;
-
 }
 
 .student__noShow{
     display: none;
-}
-
-.student__grade{
-
-}
-
-.student__btn-box{
-
 }
 
 .student__btn{
